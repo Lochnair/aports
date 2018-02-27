@@ -1,0 +1,37 @@
+From b9039e1029fa9d1c811e5eaf0cce43302f9d681b Mon Sep 17 00:00:00 2001
+From: Nils Andreas Svee <me@lochnair.net>
+Date: Sat, 27 Jan 2018 19:36:55 +0100
+Subject: [PATCH] mips: use Alpine flavor when installing
+
+---
+ arch/mips/Makefile | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/arch/mips/Makefile b/arch/mips/Makefile
+index a96d97a..aac2877 100644
+--- a/arch/mips/Makefile
++++ b/arch/mips/Makefile
+@@ -426,13 +426,16 @@ ifdef CONFIG_MIPS32_O32
+ 	$(Q)$(MAKE) $(build)=. missing-syscalls missing_syscalls_flags="-mabi=32"
+ endif
+ 
++KERNELFLAVOR_TMP := $(subst $(KERNELVERSION),"",$(KERNELRELEASE))
++KERNELFLAVOR := $(shell echo $(KERNELFLAVOR_TMP) | sed 's/-[[:digit:]]*-//')
++
+ install:
+-	$(Q)install -D -m 755 vmlinux $(INSTALL_PATH)/vmlinux-$(KERNELRELEASE)
++	$(Q)install -D -m 755 vmlinux $(INSTALL_PATH)/vmlinux-$(KERNELFLAVOR)
+ ifdef CONFIG_SYS_SUPPORTS_ZBOOT
+-	$(Q)install -D -m 755 vmlinuz $(INSTALL_PATH)/vmlinuz-$(KERNELRELEASE)
++	$(Q)install -D -m 755 vmlinuz $(INSTALL_PATH)/vmlinuz-$(KERNELFLAVOR)
+ endif
+-	$(Q)install -D -m 644 .config $(INSTALL_PATH)/config-$(KERNELRELEASE)
+-	$(Q)install -D -m 644 System.map $(INSTALL_PATH)/System.map-$(KERNELRELEASE)
++	$(Q)install -D -m 644 .config $(INSTALL_PATH)/config-$(KERNELFLAVOR)
++	$(Q)install -D -m 644 System.map $(INSTALL_PATH)/System.map-$(KERNELFLAVOR)
+ 
+ archclean:
+ 	$(Q)$(MAKE) $(clean)=arch/mips/boot
+-- 
+2.14.1
+

@@ -19,6 +19,7 @@ install=
 source="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/linux-$_kernver.tar.xz
 
 	0001-HID-apple-fix-Fn-key-Magic-Keyboard-on-bluetooth.patch
+	use-alpine-flavor_mips.patch
 
 	config-vanilla.aarch64
 	config-vanilla.armhf
@@ -222,6 +223,7 @@ _dev() {
 
 sha512sums="77e43a02d766c3d73b7e25c4aafb2e931d6b16e870510c22cef0cdb05c3acb7952b8908ebad12b10ef982c6efbe286364b1544586e715cf38390e483927904d8  linux-4.14.tar.xz
 5373728be2b507c3db5e042e1d768740df7965078868afdc46418b1adc4cae3d8f9f1aedb59975a0f2acf8754340499354fcf97c503397a5d9886ccc9689b782  0001-HID-apple-fix-Fn-key-Magic-Keyboard-on-bluetooth.patch
+7f9b21ffc7cda738c0dafbdf1d16a5dcbae3b1ccf59d7987e226d92f92d2f8ebf004e6b477a57bfd775d3645766f0d99ffc5f45e01a18b24a603b685fd9cb606  use-alpine-flavor_mips.patch
 19f9ba6dea142b531e21b79389c498e8c07e8bf617c3fff09830a37e7a16c01baa050c8740400eb00539a8f17f9b210e8bc8e4c43051fd8e19dca16d9b82152e  config-vanilla.aarch64
 a401a5c5c5e2785f373707620c18fdd74dbfe10e4e934803451a3208e99c72970f35527875e31dd78d4b82b6f77de21361cd432ffc296251737508eb545f451a  config-vanilla.armhf
 34198a6830d64b5ec685452a5880e3c7090da18857b1ce600c8c07932b5ee43b3ca68d0bdfeb6b080fef865a6eaa08bb48bfa8c6430a84b975d3e1282269fbd3  config-vanilla.x86
